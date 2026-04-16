@@ -1,4 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+const baseURL = process.env.NUXT_APP_BASE_URL || (process.env.NODE_ENV === 'production' ? '/chairasta/' : '/')
+
 export default defineNuxtConfig({
   compatibilityDate: '2025-01-01',
   modules: ['@nuxt/content', '@nuxtjs/tailwindcss'],
@@ -23,9 +25,9 @@ export default defineNuxtConfig({
     },
   },
 
-  // Set base URL if deploying to a GitHub Pages project repo (not username.github.io)
-  // The NUXT_APP_BASE_URL env var is set in the GitHub Actions workflow.
+  // Default production builds to the GitHub Pages project subpath.
+  // NUXT_APP_BASE_URL can still override this when needed.
   app: {
-    baseURL: process.env.NUXT_APP_BASE_URL || '/',
+    baseURL,
   },
 })
