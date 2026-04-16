@@ -14,13 +14,17 @@ export default defineNuxtConfig({
   // Static site generation for GitHub Pages
   nitro: {
     prerender: {
+      // crawlLinks follows <a href> links found in each rendered page.
+      // Starting from '/' and '/about' is enough because the homepage
+      // renders NuxtLinks to every blog post, so all /blog/* routes
+      // are discovered automatically.
       crawlLinks: true,
-      routes: ['/'],
+      routes: ['/', '/about'],
     },
   },
 
   // Set base URL if deploying to a GitHub Pages project repo (not username.github.io)
-  // Change '/chairasta/' to match your repo name
+  // The NUXT_APP_BASE_URL env var is set in the GitHub Actions workflow.
   app: {
     baseURL: process.env.NUXT_APP_BASE_URL || '/',
   },
