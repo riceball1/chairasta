@@ -1,0 +1,17 @@
+# Nuxt
+.nuxt
+.output
+.data
+.env
+.netlify
+.vercel
+dist
+
+# Node
+node_modules
+
+# Logs
+*.log
+
+# OS
+.DS_Store
