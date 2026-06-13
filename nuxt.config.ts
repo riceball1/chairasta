@@ -1,9 +1,8 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-// This site deploys to https://riceball1.github.io/ (a <username>.github.io
-// repo), which serves from the domain root, so the base path is '/'.
-// NUXT_APP_BASE_URL can still override this if the repo is ever renamed
-// to a project page (e.g. github.com/riceball1/chairasta -> '/chairasta/').
-const baseURL = process.env.NUXT_APP_BASE_URL || '/'
+// This site deploys to https://riceball1.github.io/chairasta/ (a project
+// page under the riceball1 account), so the base path is '/chairasta/'.
+// NUXT_APP_BASE_URL can still override this if the repo is ever renamed.
+const baseURL = process.env.NUXT_APP_BASE_URL || (process.env.NODE_ENV === 'production' ? '/chairasta/' : '/')
 
 export default defineNuxtConfig({
   compatibilityDate: '2025-01-01',
@@ -29,7 +28,7 @@ export default defineNuxtConfig({
     },
   },
 
-  // Default production builds to the GitHub Pages site root.
+  // Default production builds to the GitHub Pages project subpath.
   // NUXT_APP_BASE_URL can still override this when needed.
   app: {
     baseURL,
