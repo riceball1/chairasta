@@ -2,6 +2,18 @@
 // This site deploys to https://riceball1.github.io/chairasta/ (a project
 // page under the riceball1 account), so the base path is '/chairasta/'.
 // NUXT_APP_BASE_URL can still override this if the repo is ever renamed.
+//
+// NOTE: in GitHub Actions, `${{ vars.NUXT_APP_BASE_URL }}` evaluates to an
+// EMPTY STRING (not undefined) when the repo variable isn't set. Nitro reads
+// process.env.NUXT_APP_BASE_URL directly at runtime as a config override, so
+// an empty-but-set env var makes Nitro's prerender server think baseURL is
+// '/' while the crawler still requests '/chairasta/...' (computed below) —
+// causing every route to 404 during prerender. Deleting the empty env var
+// avoids this mismatch entirely.
+if (process.env.NUXT_APP_BASE_URL === '') {
+  delete process.env.NUXT_APP_BASE_URL
+}
+
 const baseURL = process.env.NUXT_APP_BASE_URL || (process.env.NODE_ENV === 'production' ? '/chairasta/' : '/')
 
 export default defineNuxtConfig({
