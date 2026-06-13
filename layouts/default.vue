@@ -13,6 +13,7 @@
         </NuxtLink>
         <nav class="flex gap-5 text-sm font-medium">
           <NuxtLink to="/" class="hover:text-chai-300 transition-colors" active-class="text-chai-300 underline underline-offset-4">Home</NuxtLink>
+          <NuxtLink to="/blog" class="hover:text-chai-300 transition-colors" active-class="text-chai-300 underline underline-offset-4">Blog</NuxtLink>
           <NuxtLink to="/about" class="hover:text-chai-300 transition-colors" active-class="text-chai-300 underline underline-offset-4">About</NuxtLink>
         </nav>
       </div>
